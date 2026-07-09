@@ -51,4 +51,12 @@ export class CourseService {
         COURSES.push(course);
         return COURSES;
     }
+    updatefullcourse(id:number, course:any){
+      console.log(id);
+      const index = COURSES.findIndex(e=> e.id == id);
+    }
+    updatepartialcourse(id:number, course:any){
+      console.log(id);
+      const index = COURSES.findIndex(e=> e.id == id);
+    }
 }

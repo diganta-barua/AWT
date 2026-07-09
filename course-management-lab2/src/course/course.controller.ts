@@ -1,6 +1,7 @@
-import { Body, Controller , Get, Param ,Patch,Post, Put} from '@nestjs/common';
+import { Body, Controller , Get, Param ,ParseIntPipe,Patch,Post, Put} from '@nestjs/common';
 import { CourseService } from './course.service';
-import { get } from 'http';
+import { createcoursedto } from './DTO/create-course.dto';
+import { UpdateCourseDTO } from './DTO/update-course.dto';
 
 @Controller('course')
 export class CourseController {
@@ -8,24 +9,26 @@ export class CourseController {
 
   @Get()
   getCourses() {
+    console.log("hit");
     return this.courseService.getall();
   }
   @Get(":id")
-  getbyid(@Param("id") id:number){
+  getbyid(@Param("id") id:string){
     return this.courseService.getbyid(id);
   }
 
   @Post()
-  CreateCourse(@Body() course : any){
+  CreateCourse(@Body() course : createcoursedto){
+    console.log(course);
     return this.courseService.addcourse(course);
   }
 
   @Put(":id")
-  updatefullCourse(@Param("id") id:number, @Body() course : any){
+  updatefullCourse(@Param("id") id:string, @Body() course : createcoursedto){
     return this.courseService.updatefullcourse(id, course);
   }
   @Patch(":id")
-  updatepartialCourse(@Param("id") id:number, @Body() course : any){
+  updatepartialCourse(@Param("id") id:string, @Body() course : UpdateCourseDTO){
     return this.courseService.updatepartialcourse(id, course);
   }
 }
