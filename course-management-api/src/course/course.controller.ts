@@ -28,5 +28,6 @@ export class CourseController {
   updatepartialCourse(@Param("id") id:number, @Body() course : any){
     return this.courseService.updatepartialcourse(id, course);
   }
+
 }
 
